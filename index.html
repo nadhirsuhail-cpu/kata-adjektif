@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kembara Kata Adjektif | Pembelajaran Multimedia Interaktif Tahun 3</title>
+<meta name="description" content="Persekitaran pembelajaran multimedia interaktif bagi topik Kata Adjektif, Bahasa Melayu Tahun 3 (DSKP 5.1.3). Dibangunkan mengikut model reka bentuk pengajaran ASSURE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#utama">Langkau ke kandungan utama</a>
+
+<!-- ============ SKRIN LOG MASUK ============ -->
+<div class="masuk" id="layarMasuk">
+  <header class="masuk-nav">
+    <a class="brand" href="#" aria-label="Kembara Kata Adjektif">
+      <svg class="brand-logo" viewBox="0 0 200 160" aria-hidden="true"><use href="#svg-maskot"/></svg>
+      <span class="brand-text"><strong>Kembara Kata Adjektif</strong><small>BM Tahun 3 · EDUP3133</small></span>
+    </a>
+    <button class="btn-ikon" id="btnTemaMasuk" aria-label="Tukar tema terang/gelap"><svg class="ikon"><use href="#ikon-bulan"/></svg></button>
+  </header>
+
+  <main class="masuk-utama">
+    <p class="eyebrow">Bahasa Melayu · Tahun 3 · KSSR</p>
+    <h1 class="masuk-tajuk">Kembara Kata Adjektif.</h1>
+    <p class="masuk-sub">Persekitaran pembelajaran multimedia interaktif yang direka dengan teliti — untuk setiap murid, di setiap aras kebolehan.</p>
+
+    <div class="masuk-kad2">
+      <button class="masuk-kad" id="btnMasukGuru">
+        <svg class="ikon masuk-ikon" aria-hidden="true"><use href="#ikon-guru"/></svg>
+        <span class="masuk-nama">Untuk Guru</span>
+        <span class="masuk-desc">Papan pemuka, panduan pengajaran, model ASSURE dan pratinjau murid.</span>
+        <span class="masuk-cta">Masuk sebagai guru <svg class="ikon ikon-kecil"><use href="#ikon-anak-panah"/></svg></span>
+      </button>
+      <button class="masuk-kad" id="btnMasukMurid">
+        <svg class="ikon masuk-ikon" aria-hidden="true"><use href="#ikon-murid"/></svg>
+        <span class="masuk-nama">Untuk Murid</span>
+        <span class="masuk-desc">Belajar kata adjektif, bermain permainan dan kumpul bintang.</span>
+        <span class="masuk-cta">Mula kembara <svg class="ikon ikon-kecil"><use href="#ikon-anak-panah"/></svg></span>
+      </button>
+    </div>
+
+    <p class="masuk-demo">Demo — Guru: kata laluan <code>guru123</code> · Murid: masukkan sebarang nama</p>
+  </main>
+</div>
+
+<!-- ============ KEPING (SHEET) LOG MASUK GURU ============ -->
+<div class="keping" id="kepingGuru" hidden role="dialog" aria-modal="true" aria-labelledby="tajukLogGuru">
+  <div class="keping-kad">
+    <button class="keping-tutup" data-tutup aria-label="Tutup">✕</button>
+    <svg class="ikon masuk-ikon" aria-hidden="true"><use href="#ikon-guru"/></svg>
+    <h2 id="tajukLogGuru">Masuk sebagai Guru</h2>
+    <p class="keping-sub">Masukkan kata laluan guru untuk mengakses papan pemuka.</p>
+    <form id="formGuru" novalidate>
+      <label class="medan">
+        <span class="medan-label">Kata laluan</span>
+        <input type="password" id="logGuruPass" placeholder="••••••••" autocomplete="current-password">
+      </label>
+      <p class="keping-ralat" id="ralatGuru" role="alert" hidden>Kata laluan tidak tepat. Cuba lagi.</p>
+      <button type="submit" class="btn btn-utama btn-lebar">Masuk</button>
+    </form>
+    <p class="masuk-demo">Demo: <code>guru123</code></p>
+  </div>
+</div>
+
+<!-- ============ KEPING (SHEET) LOG MASUK MURID ============ -->
+<div class="keping" id="kepingMurid" hidden role="dialog" aria-modal="true" aria-labelledby="tajukLogMurid">
+  <div class="keping-kad">
+    <button class="keping-tutup" data-tutup aria-label="Tutup">✕</button>
+    <svg class="ikon masuk-ikon" aria-hidden="true"><use href="#ikon-murid"/></svg>
+    <h2 id="tajukLogMurid">Siapa nama kamu?</h2>
+    <p class="keping-sub">Pilih avatar dan tulis nama kamu untuk memulakan kembara.</p>
+    <form id="formMurid" novalidate>
+      <div class="avatar-grid" id="avatarGrid" role="radiogroup" aria-label="Pilih avatar"></div>
+      <label class="medan">
+        <span class="medan-label">Nama kamu</span>
+        <input type="text" id="logMuridNama" placeholder="cth: Aiman" maxlength="20" autocomplete="off">
+      </label>
+      <p class="keping-ralat" id="ralatMurid" role="alert" hidden>Sila tulis nama kamu dahulu.</p>
+      <button type="submit" class="btn btn-utama btn-lebar">Mula Kembara</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ APLIKASI (muncul selepas log masuk) ============ -->
+<div id="aplikasi" hidden>
+  <header class="header">
+    <div class="header-bar">
+      <a class="brand" href="#" data-nav="utama" aria-label="Kembara Kata Adjektif — Utama">
+        <svg class="brand-logo" viewBox="0 0 200 160" aria-hidden="true"><use href="#svg-maskot"/></svg>
+        <span class="brand-text"><strong>Kembara Kata Adjektif</strong><small id="brandSub">BM Tahun 3 · EDUP3133</small></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Navigasi utama"><!-- butang dijana oleh JS ikut peranan --></nav>
+
+      <div class="header-tindakan">
+        <button class="btn-ikon" id="btnTema" aria-label="Tukar tema terang/gelap"><svg class="ikon"><use href="#ikon-bulan"/></svg></button>
+        <button class="btn-ikon" id="btnA11y" aria-expanded="false" aria-controls="barA11y" aria-label="Alat kebolehcapaian"><svg class="ikon"><use href="#ikon-akses"/></svg></button>
+        <div class="cip-pengguna" id="cipPengguna">
+          <span class="cip-avatar" id="cipAvatar" aria-hidden="true"></span>
+          <span class="cip-maklumat">
+            <span class="cip-nama" id="cipNama"></span>
+            <span class="cip-peranan" id="cipPeranan"></span>
+          </span>
+          <button class="btn-keluar" id="btnKeluar" aria-label="Log keluar">Keluar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BAR AKSESIBILITI ============ -->
+    <div class="a11y-bar" id="barA11y" hidden>
+      <span class="a11y-title">Alat Sokongan Pembelajaran</span>
+      <div class="a11y-group" role="group" aria-label="Saiz teks">
+        <button id="btnFontMin" title="Kecilkan saiz teks">A&minus;</button>
+        <button id="btnFontPlus" title="Besarkan saiz teks">A+</button>
+      </div>
+      <button id="btnDys" class="a11y-pill" aria-pressed="false">Fon Mesra Disleksia</button>
+      <button id="btnKontras" class="a11y-pill" aria-pressed="false">Kontras Tinggi</button>
+      <button id="btnNarasi" class="a11y-pill is-on" aria-pressed="true">Narasi Audio: Hidup</button>
+      <button id="btnAnimasi" class="a11y-pill" aria-pressed="false">Kurangkan Animasi</button>
+    </div>
+  </header>
+
+  <main id="utama">
+
+    <!-- ============ SKRIN: PAPAN PEMUKA (GURU SAHAJA) ============ -->
+    <section class="screen" id="screen-dash" aria-labelledby="t-dash" hidden>
+      <div class="kepala-seksyen">
+        <p class="eyebrow" id="dashEyebrow">Papan Pemuka Guru</p>
+        <h1 id="t-dash">Selamat datang, <span class="teks-aksen">Cikgu</span>.</h1>
+        <p class="seksyen-sub">Pantau kemajuan murid, urus pengajaran dan nilai keberkesanan produk dari satu tempat.</p>
+      </div>
+
+      <div class="kad-grid empat" id="dashStat"><!-- statistik dijana oleh JS --></div>
+
+      <div class="kad-grid dua">
+        <article class="kad">
+          <h2>Senarai Murid di Peranti Ini</h2>
+          <p class="muted">Profil murid yang telah log masuk pada peranti ini beserta pencapaian mereka.</p>
+          <div id="dashMurid" class="senarai-murid"></div>
+        </article>
+        <article class="kad">
+          <h2>Pautan Penting</h2>
+          <ul class="senarai-pautan" id="dashPautan"><!-- dijana oleh JS --></ul>
+          <h2 style="margin-top:22px">Aliran Kerja Harian</h2>
+          <ol class="langkah-list">
+            <li><strong>Murid log masuk</strong> dengan nama sendiri dan meneroka <em>Mari Belajar</em>.</li>
+            <li><strong>Murid bermain</strong> permainan interaktif; skor tersimpan dalam profil mereka.</li>
+            <li><strong>Guru menyemak</strong> pencapaian dalam senarai di atas dan membimbing murid yang memerlukan.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SKRIN: LAMAN UTAMA (MURID) ============ -->
+    <section class="screen" id="screen-home" aria-labelledby="t-home" hidden>
+      <div class="hero">
+        <div class="hero-teks">
+          <p class="eyebrow">Bahasa Melayu · Tahun 3 · KSSR</p>
+          <h1 id="t-home"><span id="salamHero">Hai</span>, sedia untuk <span class="teks-aksen">kembara</span> hari ini?</h1>
+          <p class="hero-desc">Temui 12 kata adjektif — <strong>jarak</strong>, <strong>perasaan</strong> dan <strong>pancaindera</strong> — melalui ilustrasi, narasi dan permainan. Kumpul bintang, kalahkan cabaran, dan jadilah juara bahasa.</p>
+          <div class="hero-cta">
+            <button class="btn btn-besar btn-utama" data-nav="belajar">Mula Belajar</button>
+            <button class="btn btn-besar btn-hantu" data-nav="permainan">Main Permainan</button>
+          </div>
+          <ul class="hero-senarai">
+            <li>12 kata adjektif dengan ilustrasi asli</li>
+            <li>Narasi audio &amp; fon mesra disleksia</li>
+            <li>4 aktiviti interaktif + lencana pencapaian</li>
+          </ul>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-bulat"></div>
+          <svg viewBox="0 0 200 160" class="hero-maskot"><use href="#svg-maskot"/></svg>
+        </div>
+      </div>
+
+      <div class="kad-grid tiga">
+        <article class="kad">
+          <span class="kad-label">Objektif</span>
+          <h2>Jelas dari mula</h2>
+          <ol class="senarai-objektif">
+            <li>Mengenal pasti 12 kata adjektif: jarak, perasaan dan pancaindera.</li>
+            <li>Memahami fungsi kata adjektif sebagai perkataan yang menerangkan sifat atau keadaan.</li>
+            <li>Menggunakan kata adjektif dalam ayat yang betul mengikut konteks.</li>
+            <li>Mengelaskan kata adjektif kepada jenis yang tepat.</li>
+          </ol>
+        </article>
+        <article class="kad">
+          <span class="kad-label">Rakan Kembara</span>
+          <h2>Kenali Si Cendekia</h2>
+          <p>Si Cendekia, burung hantu yang <em>panjang akal</em>, akan menemani kamu. Tekan butang <span class="label-cth"><svg class="ikon ikon-kecil"><use href="#ikon-pembesar"/></svg> Dengar</span> untuk narasi setiap penerangan.</p>
+          <button class="btn btn-kecil btn-utama" id="btnCubaNarasi">Cuba Narasi Audio</button>
+        </article>
+        <article class="kad">
+          <span class="kad-label">Kemajuan</span>
+          <h2>Pencapaian Saya</h2>
+          <div id="panelPencapaian" class="panel-pencapaian"></div>
+        </article>
+      </div>
+
+      <div class="kad petua">
+        <h2>Untuk Guru &amp; Ibu Bapa</h2>
+        <p>Produk ini dibangunkan mengikut <strong>model ASSURE</strong> dan berteraskan <strong>DSKP Bahasa Melayu SK Tahun 3 — SK 5.1 &amp; SP 5.1.3</strong> (kata adjektif: jarak, perasaan, pancaindera). Ia menyokong <em>Kapasiti Pedagogi Pembelajaran Bermakna (KPPB)</em> melalui elemen 3E — <strong>Engage</strong>, <strong>Enhance</strong> dan <strong>Extend</strong>. Log masuk sebagai guru untuk panduan pelaksanaan penuh.</p>
+      </div>
+    </section>
+
+    <!-- ============ SKRIN: MARI BELAJAR ============ -->
+    <section class="screen" id="screen-belajar" aria-labelledby="t-belajar" hidden>
+      <div class="kepala-seksyen">
+        <p class="eyebrow">Penerokaan</p>
+        <h1 id="t-belajar">Mari Belajar.</h1>
+        <p class="seksyen-sub">Klik setiap kad untuk meneroka makna kata adjektif mengikut kumpulan: <strong>jarak</strong>, <strong>perasaan</strong> dan <strong>pancaindera</strong>. Tekan <strong>Dengar</strong> untuk narasi audio, dan <strong>Lihat Makna</strong> untuk menyemak jawapan.</p>
+      </div>
+      <div class="kad-grid pelajaran" id="gridPelajaran"><!-- kad dijana oleh JS --></div>
+    </section>
+
+    <!-- ============ SKRIN: PERMAINAN ============ -->
+    <section class="screen" id="screen-permainan" aria-labelledby="t-permainan" hidden>
+      <div class="kepala-seksyen">
+        <p class="eyebrow">Latihan Interaktif</p>
+        <h1 id="t-permainan">Permainan.</h1>
+        <p class="seksyen-sub">Pilih permainan dan kumpul bintang. Maklum balas serta-merta — belajar sambil bermain.</p>
+      </div>
+
+      <div class="tab-bar" role="tablist" aria-label="Jenis permainan">
+        <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="kuiz">Kuiz Interaktif</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="padanan">Padanan Pintar</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="lengkap">Lengkapkan Ayat</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="cabaran">Cabaran Minda</button>
+      </div>
+
+      <!-- Kuiz -->
+      <div class="tab-panel is-active" id="panel-kuiz" role="tabpanel" aria-label="Kuiz Interaktif">
+        <div id="kuizMula" class="kad mulakan">
+          <h2>Kuiz Interaktif</h2>
+          <p class="muted">10 soalan aneka pilihan dengan maklum balas serta-merta. Dapatkan 10/10 untuk Bintang Emas.</p>
+          <button class="btn btn-besar btn-utama" id="btnMulaKuiz">Mula Kuiz</button>
+        </div>
+        <div id="kuizMain" hidden>
+          <div class="kad permainan">
+            <div class="progress-wrap"><div class="progress-bar" id="kuizProgress"></div></div>
+            <p class="soalan-posisi" id="kuizPosisi">Soalan 1 / 10</p>
+            <h2 class="soalan-teks" id="kuizSoalan"></h2>
+            <div class="pilihan" id="kuizPilihan" role="group" aria-label="Pilihan jawapan"></div>
+            <div class="petunjuk" id="kuizPetunjuk" hidden></div>
+            <p class="maklum-status" id="kuizStatus" aria-live="polite"></p>
+          </div>
+        </div>
+        <div id="kuizTamat" hidden>
+          <div class="kad tamat">
+            <div class="tamat-lencana" id="kuizLencana" aria-hidden="true"><svg class="ikon-lencana" style="color:#f5b301"><use href="#ikon-bintang"/></svg></div>
+            <h2 id="kuizTajukTamat"></h2>
+            <p id="kuizSkorTamat" class="skor-besar"></p>
+            <p id="kuizMesejTamat" class="muted"></p>
+            <div class="tamat-cta">
+              <button class="btn btn-utama" id="btnUlangKuiz">Cuba Lagi</button>
+              <button class="btn btn-hantu" data-nav="belajar">Ulang Kaji</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Padanan -->
+      <div class="tab-panel" id="panel-padanan" role="tabpanel" aria-label="Padanan Pintar" hidden>
+        <div class="kad permainan">
+          <h2>Padanan Pintar</h2>
+          <p class="muted">Pilih kata adjektif di kiri, kemudian kategorinya di kanan — jarak, perasaan atau pancaindera. Padankan semua 6 pasangan.</p>
+          <div class="padanan-wrap">
+            <div class="padanan-kolom" id="padananKiri"></div>
+            <div class="padanan-kolom" id="padananKanan"></div>
+          </div>
+          <p class="maklum-status" id="padananStatus" aria-live="polite"></p>
+          <div id="padananTamat" class="tamat-mini" hidden>
+            <p class="skor-besar">Syabas.</p>
+            <p class="muted">Semua pasangan berjaya dipadankan. Hebat!</p>
+            <button class="btn btn-utama" id="btnUlangPadanan">Main Semula</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lengkapkan ayat -->
+      <div class="tab-panel" id="panel-lengkap" role="tabpanel" aria-label="Lengkapkan Ayat" hidden>
+        <div class="kad permainan">
+          <h2>Lengkapkan Ayat</h2>
+          <p class="muted">Pilih perkataan yang sesuai untuk melengkapkan setiap ayat. Perhatikan konteks ayat dengan teliti.</p>
+          <div id="lengkapList"></div>
+          <p class="maklum-status" id="lengkapStatus" aria-live="polite"></p>
+          <div id="lengkapTamat" class="tamat-mini" hidden>
+            <p class="skor-besar">Syabas.</p>
+            <p class="muted" id="lengkapMesejTamat"></p>
+            <button class="btn btn-utama" id="btnUlangLengkap">Main Semula</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cabaran minda -->
+      <div class="tab-panel" id="panel-cabaran" role="tabpanel" aria-label="Cabaran Minda" hidden>
+        <div id="cabaranMula" class="kad mulakan">
+          <h2>Cabaran Minda</h2>
+          <p class="muted">Pilih aras cabaran mengikut kemampuan kamu. Setiap aras adalah hebat.</p>
+          <div class="aras-pilih">
+            <button class="btn aras-btn aras-mudah" data-aras="mudah">Mudah<small>5 soalan asas</small></button>
+            <button class="btn aras-btn aras-sederhana" data-aras="sederhana">Sederhana<small>5 soalan aplikasi</small></button>
+            <button class="btn aras-btn aras-sukar" data-aras="sukar">Sukar<small>5 soalan penaakulan</small></button>
+          </div>
+        </div>
+        <div id="cabaranMain" hidden>
+          <div class="kad permainan">
+            <p class="aras-label" id="cabaranAras"></p>
+            <div class="progress-wrap"><div class="progress-bar" id="cabaranProgress"></div></div>
+            <p class="soalan-posisi" id="cabaranPosisi">Soalan 1 / 5</p>
+            <h2 class="soalan-teks" id="cabaranSoalan"></h2>
+            <div class="pilihan" id="cabaranPilihan" role="group" aria-label="Pilihan jawapan"></div>
+            <p class="maklum-status" id="cabaranStatus" aria-live="polite"></p>
+          </div>
+        </div>
+        <div id="cabaranTamat" hidden>
+          <div class="kad tamat">
+            <div class="tamat-lencana" id="cabaranLencana" aria-hidden="true"><svg class="ikon-lencana"><use href="#ikon-trofi"/></svg></div>
+            <h2 id="cabaranTajukTamat"></h2>
+            <p id="cabaranSkorTamat" class="skor-besar"></p>
+            <p id="cabaranMesejTamat" class="muted"></p>
+            <div class="tamat-cta">
+              <button class="btn btn-utama" id="btnUlangCabaran">Pilih Aras Lain</button>
+              <button class="btn btn-hantu" data-nav="belajar">Ulang Kaji</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKRIN: ZON 3D & AR ============ -->
+    <section class="screen" id="screen-zon3d" aria-labelledby="t-zon3d" hidden>
+      <div class="kepala-seksyen">
+        <p class="eyebrow">Teknologi Semasa</p>
+        <h1 id="t-zon3d">Zon 3D &amp; AR.</h1>
+        <p class="seksyen-sub">Terokai kata adjektif dalam dunia tiga dimensi. Seret untuk memutar pandangan, klik perkataan untuk mendengar narasi, dan gunakan AR dengan kamera untuk melihat objek 3D di atas penanda bercetak.</p>
+      </div>
+
+      <div class="tab-bar" role="tablist" aria-label="Mod 3D atau AR">
+        <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab3d="d3">3D Interaktif</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab3d="ar">AR Penanda</button>
+      </div>
+
+      <div class="zon-panel is-active" id="zon-d3" role="tabpanel" aria-label="3D Interaktif">
+        <div class="kad permainan" style="max-width:920px">
+          <div id="bekas3d" class="bekas-scene">
+            <p class="kosong-negeri">Memuatkan enjin 3D…</p>
+          </div>
+          <p class="muted" style="margin-top:12px">Seret untuk memutar pandangan · Klik kad perkataan untuk mendengar · Butang gogal (VR) di penjuru kanan untuk mod imersif pada telefon atau set kepala VR.</p>
+        </div>
+      </div>
+
+      <div class="zon-panel" id="zon-ar" role="tabpanel" aria-label="AR Penanda" hidden>
+        <div class="kad permainan" style="max-width:920px">
+          <div id="bekasAr" class="bekas-scene">
+            <div class="ar-mula">
+              <p class="muted">Mod AR menggunakan kamera peranti anda. Kandungan tidak direkod atau dihantar ke mana-mana.</p>
+              <button class="btn btn-utama" id="btnAktifAr">Aktifkan Kamera AR</button>
+            </div>
+          </div>
+          <p class="ar-status" id="arStatus" hidden></p>
+          <div class="ar-petua">
+            <div class="ar-langkah">
+              <h3>Cara guna — 3 langkah</h3>
+              <ol>
+                <li><strong>Cetak penanda</strong> — klik butang "Cetak Penanda" di bawah, cetak pada kertas putih (kira-kira 7 cm &times; 7 cm, jangan berkilat).</li>
+                <li><strong>Aktifkan kamera</strong> — klik "Aktifkan Kamera AR" dan benarkan akses kamera.</li>
+                <li><strong>Halakan kamera</strong> — pegang telefon 20–40 cm dari penanda dalam cahaya terang. Objek 3D akan muncul di atas penanda.</li>
+              </ol>
+            </div>
+            <div class="ar-kotak-kanan">
+              <img class="ar-pratonton" src="assets/hiro.png" alt="Pratonton penanda Hiro — corak hitam segi empat tepat di tengah kertas putih">
+              <div class="ar-tindakan">
+                <a class="btn btn-kecil btn-utama" href="assets/hiro.png" target="_blank" rel="noopener">Cetak Penanda</a>
+                <a class="btn btn-kecil btn-hantu" href="assets/hiro.png" download>Muat Turun</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKRIN: MODEL ASSURE (GURU) ============ -->
+    <section class="screen" id="screen-assure" aria-labelledby="t-assure" hidden>
+      <div class="kepala-seksyen">
+        <p class="eyebrow">Reka Bentuk Pengajaran</p>
+        <h1 id="t-assure">Model ASSURE.</h1>
+        <p class="seksyen-sub">Produk ini dibangunkan langkah demi langkah mengikut model ASSURE. Klik setiap fasa untuk melihat aplikasinya.</p>
+      </div>
+      <div class="assure-grid" id="gridAssure"></div>
+    </section>
+
+    <!-- ============ SKRIN: PANDUAN GURU ============ -->
+    <section class="screen" id="screen-guru" aria-labelledby="t-guru" hidden>
+      <div class="kepala-seksyen">
+        <p class="eyebrow">Untuk Guru</p>
+        <h1 id="t-guru">Panduan Guru.</h1>
+        <p class="seksyen-sub">Cadangan pelaksanaan 60 minit serta strategi pembezaan bagi murid berlainan kebolehan akademik dan berkeperluan khas.</p>
+      </div>
+
+      <div class="kad-grid dua">
+        <article class="kad">
+          <span class="kad-label">Rancangan</span>
+          <h2>Langkah Pelaksanaan (60 minit)</h2>
+          <ol class="langkah-list">
+            <li><strong>Set Induksi (5 min)</strong> — Mainkan halaman utama &amp; narasi Si Cendekia. Tanya murid: "Apakah perkataan yang menggambarkan rasa gula itu? Bagaimana dengan jarak rumah kamu ke sekolah?"</li>
+            <li><strong>Penerokaan (20 min)</strong> — Murid meneroka <em>Mari Belajar</em> secara berpasangan menggunakan fon/saiz/audio mengikut keperluan.</li>
+            <li><strong>Aktiviti (20 min)</strong> — Murid bermain <em>Kuiz Interaktif</em> dan <em>Padanan Pintar</em>. Guru berbincang tentang jawapan salah.</li>
+            <li><strong>Pembezaan (10 min)</strong> — Murid aras rendah: <em>Cabaran Minda – Mudah</em>; aras tinggi: aras <em>Sukar</em> + cipta ayat sendiri.</li>
+            <li><strong>Penutup (5 min)</strong> — Semak <em>Pencapaian Saya</em>, beri pujian, dan minta murid guna kata adjektif dalam diari mingguan.</li>
+          </ol>
+        </article>
+        <article class="kad">
+          <span class="kad-label">Inklusif</span>
+          <h2>Sokongan Kepelbagaian Pelajar</h2>
+          <ul class="langkah-list">
+            <li><strong>Disleksia / masalah bacaan</strong> — Fon Mesra Disleksia, saiz teks A+, narasi audio pada setiap kad.</li>
+            <li><strong>Masalah pendengaran</strong> — Semua maklumat dalam bentuk teks &amp; visual; permainan tidak bergantung pada bunyi.</li>
+            <li><strong>Masalah penglihatan</strong> — Mod Kontras Tinggi + butang besar + pembesaran teks.</li>
+            <li><strong>Murid cerdas</strong> — Cabaran Minda Sukar + aktiviti lanjutan mencipta ayat berbilang kata adjektif.</li>
+            <li><strong>Murid lambat</strong> — Aras Mudah, petunjuk dalam kuiz, maklum balas positif tanpa had masa.</li>
+          </ul>
+        </article>
+        <article class="kad">
+          <span class="kad-label">KPPB</span>
+          <h2>Integrasi KPPB &amp; 3E</h2>
+          <table class="jadual-mini">
+            <thead><tr><th>Elemen</th><th>Aplikasi dalam produk</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Engage</strong></td><td>Ilustrasi asli, animasi, audio narasi &amp; cerita membuka minat murid.</td></tr>
+              <tr><td><strong>Enhance</strong></td><td>Kuiz, padanan, lengkapkan ayat &amp; cabaran minda memperkukuh pemahaman.</td></tr>
+              <tr><td><strong>Extend</strong></td><td>Perkongsian dengan rakan pembelajaran bagi maklum balas.</td></tr>
+              <tr><td><strong>Relevan (R2)</strong></td><td>Kandungan selari DSKP BM Tahun 3 &amp; pentaksiran formatif terbina dalam.</td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="kad">
+          <span class="kad-label">Teknologi</span>
+          <h2>Teknologi Semasa &amp; Etika</h2>
+          <ul class="langkah-list">
+            <li><strong>Sintesis suara (TTS)</strong> — narasi automatik membantu murid yang sukar membaca.</li>
+            <li><strong>Realiti Terimbuh (AR) &amp; 3D</strong> — mod AR penanda (AR.js + kamera) dan paparan 3D interaktif (A-Frame) memberikan pengalaman pembelajaran imersif.</li>
+            <li><strong>Reka bentuk responsif</strong> — berfungsi di telefon, tablet &amp; komputer tanpa pemasangan.</li>
+            <li><strong>Penyimpanan setempat</strong> — rekod pencapaian tersimpan dalam peranti sendiri (privasi terpelihara, tiada data dihantar ke pelayan luar).</li>
+            <li><strong>Penggunaan AI</strong> — dinyatakan secara telus: draf awal &amp; kod dibantu AI, manakala pemilihan kandungan, reka bentuk aktiviti &amp; penilaian dibuat oleh pembangun produk.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SKRIN: RUJUKAN (GURU) ============ -->
+    <section class="screen" id="screen-rujukan" aria-labelledby="t-rujukan" hidden>
+      <div class="kepala-seksyen">
+        <p class="eyebrow">Integriti Akademik</p>
+        <h1 id="t-rujukan">Rujukan &amp; Kredit.</h1>
+      </div>
+      <div class="kad rujukan-kad">
+        <h2>Rujukan Utama</h2>
+        <ul class="rujukan-list">
+          <li>Bahagian Pembangunan Kurikulum, Kementerian Pendidikan Malaysia. (2015). <em>Dokumen Standard Kurikulum dan Pentaksiran (DSKP) Bahasa Melayu Tahun 3.</em> Putrajaya: KPM.</li>
+          <li>Heinich, R., Molenda, M., Russell, J. D., &amp; Smaldino, S. E. (2012). <em>Instructional media and technologies for learning</em> (12th ed.). Boston: Pearson.</li>
+          <li>Mishra, P., &amp; Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge. <em>Teachers College Record, 108</em>(6), 1017–1054.</li>
+          <li>Smaldino, S. E., Lowther, D. L., &amp; Russell, J. D. (2019). <em>Instructional technology and media for learning</em> (12th ed.). New York: Pearson.</li>
+          <li>Zurinawati, M., &amp; Dayang Rafidah, S. (2026). Kompetensi digital guru dalam pendidikan abad ke-21. <em>Jurnal Pendidikan Malaysia</em>, 51(1), 45–60.</li>
+          <li>ISTE. (2024). <em>ISTE Standards for Educators.</em> International Society for Technology in Education.</li>
+        </ul>
+        <h2>Kredit Media</h2>
+        <p>Semua ilustrasi SVG, ikon antara muka (gaya garis) dan kandungan aktiviti dihasilkan khas untuk produk ini. Narasi audio menggunakan teknologi sintesis pertuturan (Web Speech API). Tiada ikon emoji atau aset generik digunakan dalam antaramuka.</p>
+        <h2>Deklarasi Penggunaan AI</h2>
+        <p>Kecerdasan buatan (AI) digunakan sebagai <strong>alat sokongan</strong> dalam proses pembangunan produk ini, antaranya untuk penjanaan draf awal kod antaramuka dan cadangan susunan kandungan. Pemilihan topik, penentuan objektif pembelajaran mengikut DSKP, reka bentuk aktiviti, penyuntingan kandungan, pemilihan media dan penilaian keberkesanan produk dilakukan sendiri oleh pembangun. Penggunaan AI tidak menggantikan proses penciptaan utama dan dinyatakan secara telus selaras dengan garis panduan tugasan.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>Kembara Kata Adjektif</strong> · Tugasan 3 EDUP3133 · Model ASSURE · <em>Kompetensi Guru Memperkasa Transformasi Pendidikan</em></p>
+    <p class="muted">Direka untuk setiap murid — di aliran perdana, berlainan kebolehan akademik dan berkeperluan khas.</p>
+  </footer>
+</div>
+
+<!-- ============ MODAL PELAJARAN ============ -->
+<div class="modal" id="modalPelajaran" hidden role="dialog" aria-modal="true" aria-labelledby="modalTajuk">
+  <div class="modal-kotak">
+    <button class="modal-tutup" id="modalTutup" aria-label="Tutup">✕</button>
+    <div class="modal-badan">
+      <div class="modal-gambar" id="modalGambar" aria-hidden="true"></div>
+      <p class="modal-kategori" id="modalKategori"></p>
+      <h2 id="modalTajuk"></h2>
+      <div class="modal-makna" id="modalMakna" hidden>
+        <p class="makna-label">Makna</p>
+        <p id="modalMaknaTeks"></p>
+      </div>
+      <button class="btn btn-utama" id="btnTunjukMakna">Lihat Makna</button>
+      <div class="modal-ayat" id="modalAyat" hidden>
+        <p class="makna-label">Contoh ayat</p>
+        <p id="modalAyatTeks"></p>
+        <button class="btn btn-kecil btn-hantu" id="btnDengarAyat"><svg class="ikon ikon-kecil"><use href="#ikon-pembesar"/></svg> Dengar Ayat</button>
+      </div>
+      <div class="modal-nav">
+        <button class="btn btn-hantu" id="btnSebelum">← Sebelum</button>
+        <span class="modal-posisi" id="modalPosisi"></span>
+        <button class="btn btn-hantu" id="btnSeterusnya">Seterusnya →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PERPUSTAKAAN ILUSTRASI SVG (karya asli produk) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+  <linearGradient id="g-kuning" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD166"/><stop offset="1" stop-color="#FFC53D"/></linearGradient>
+  <linearGradient id="g-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3ED9C9"/><stop offset="1" stop-color="#2EC4B6"/></linearGradient>
+
+  <!-- ============ PUSTAKA IKON UI (SVG gaya garis, tiada emoji) ============ -->
+  <symbol id="ikon-guru" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12.5V17c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 10v6"/></symbol>
+  <symbol id="ikon-murid" viewBox="0 0 24 24"><path d="M4 9.5h16v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 9.5V7a3 3 0 0 1 6 0v2.5"/><path d="M4 13.5h16"/></symbol>
+  <symbol id="ikon-bulan" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="ikon-matahari" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="ikon-akses" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="8" r="1.8"/><path d="M8.2 15c1.1-2 6.5-2 7.6 0"/></symbol>
+  <symbol id="ikon-pembesar" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9.5 9.5 0 0 1 0 13"/></symbol>
+  <symbol id="ikon-bintang" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.8.8-5 4.6 1.3 6.7-6-3.3-6 3.3 1.3-6.7-5-4.6 6.8-.8z"/></symbol>
+  <symbol id="ikon-trofi" viewBox="0 0 24 24"><path d="M6 4h12v4a6 6 0 0 1-12 0z"/><path d="M6 5H3v2a4 4 0 0 0 3 3.9"/><path d="M18 5h3v2a4 4 0 0 1-3 3.9"/><path d="M12 14v4"/><path d="M8 21h8"/><path d="M10 18h4"/></symbol>
+  <symbol id="ikon-pingat" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M8.3 13.8 7 21.5l5-3 5 3-1.3-7.7"/></symbol>
+  <symbol id="ikon-menaik" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+  <symbol id="ikon-semak" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="ikon-pautan" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="ikon-anak-panah" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+
+  <!-- Maskot: Si Cendekia (burung hantu) -->
+  <symbol id="svg-maskot" viewBox="0 0 200 160">
+    <ellipse cx="100" cy="105" rx="58" ry="50" fill="#1B2A4A"/>
+    <path d="M100 55 C100 55 78 40 70 20 L82 18 C88 32 98 40 100 55 Z" fill="#1B2A4A"/>
+    <path d="M100 55 C100 55 122 40 130 20 L118 18 C112 32 102 40 100 55 Z" fill="#1B2A4A"/>
+    <polygon points="72,20 96,42 128,20 116,44 100,52 84,44" fill="#2EC4B6"/>
+    <rect x="96" y="12" width="8" height="12" rx="2" fill="#1B2A4A"/>
+    <circle cx="100" cy="8" r="5" fill="#FFC53D"/>
+    <circle cx="76" cy="88" r="20" fill="#FFFDF6"/>
+    <circle cx="124" cy="88" r="20" fill="#FFFDF6"/>
+    <circle cx="76" cy="90" r="9" fill="#1B2A4A"/>
+    <circle cx="124" cy="90" r="9" fill="#1B2A4A"/>
+    <circle cx="79" cy="87" r="3" fill="#fff"/>
+    <circle cx="127" cy="87" r="3" fill="#fff"/>
+    <polygon points="100,100 92,110 100,118 108,110" fill="#FF9F1C"/>
+    <ellipse cx="52" cy="110" rx="20" ry="34" fill="#2E4470" transform="rotate(-18 52 110)"/>
+    <ellipse cx="148" cy="110" rx="20" ry="34" fill="#2E4470" transform="rotate(18 148 110)"/>
+    <ellipse cx="100" cy="158" rx="26" ry="6" fill="#00000022"/>
+  </symbol>
+
+
+  <!-- 1. Jauh -->
+  <symbol id="svg-jauh" viewBox="0 0 200 160">
+    <path d="M20 130 Q70 40 140 40 L180 130" fill="#2EC4B6"/>
+    <path d="M90 130 Q120 90 150 90 L170 130" fill="#7BC950"/>
+    <circle cx="150" cy="30" r="12" fill="#FFC53D"/>
+    <path d="M30 130 Q80 95 130 120 Q160 132 190 126" stroke="#E8DFC8" stroke-width="6" fill="none"/>
+    <rect x="40" y="112" width="26" height="20" fill="#FF6B6B"/>
+    <polygon points="36,112 53,98 70,112" fill="#1B2A4A"/>
+    <rect x="48" y="120" width="9" height="12" fill="#FFF3C4"/>
+  </symbol>
+
+  <!-- 2. Dekat -->
+  <symbol id="svg-dekat" viewBox="0 0 200 160">
+    <rect x="60" y="80" width="60" height="50" fill="#FFC53D"/>
+    <polygon points="54,80 90,52 126,80" fill="#FF6B6B"/>
+    <rect x="80" y="106" width="16" height="24" fill="#1B2A4A"/>
+    <circle cx="146" cy="98" r="14" fill="#FFD9B3"/>
+    <rect x="134" y="112" width="24" height="34" rx="8" fill="#2EC4B6"/>
+    <path d="M120 122 Q146 130 172 122" stroke="#FFD9B3" stroke-width="8" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 3. Hampir (bas hampir sampai) -->
+  <symbol id="svg-hampir" viewBox="0 0 200 160">
+    <rect x="40" y="80" width="100" height="46" rx="10" fill="#0071e3"/>
+    <rect x="52" y="90" width="20" height="16" rx="3" fill="#BFE3FF"/>
+    <rect x="80" y="90" width="20" height="16" rx="3" fill="#BFE3FF"/>
+    <rect x="108" y="90" width="20" height="16" rx="3" fill="#BFE3FF"/>
+    <circle cx="64" cy="130" r="11" fill="#1B2A4A"/>
+    <circle cx="116" cy="130" r="11" fill="#1B2A4A"/>
+    <circle cx="64" cy="130" r="5" fill="#fff"/>
+    <circle cx="116" cy="130" r="5" fill="#fff"/>
+    <rect x="150" y="96" width="8" height="42" fill="#FF6B6B"/>
+    <circle cx="154" cy="90" r="10" fill="#FF6B6B"/>
+    <path d="M156 62 q6 6 0 14 M156 44 q8 8 0 18" stroke="#1B2A4A" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 4. Tinggi (menara) -->
+  <symbol id="svg-tinggi" viewBox="0 0 200 160">
+    <rect x="82" y="26" width="36" height="112" rx="4" fill="#A78BFA"/>
+    <rect x="74" y="20" width="52" height="12" rx="3" fill="#1B2A4A"/>
+    <rect x="76" y="40" width="10" height="8" fill="#E5B3FF"/>
+    <rect x="92" y="40" width="10" height="8" fill="#E5B3FF"/>
+    <rect x="76" y="66" width="10" height="8" fill="#E5B3FF"/>
+    <rect x="92" y="66" width="10" height="8" fill="#E5B3FF"/>
+    <rect x="76" y="92" width="10" height="8" fill="#E5B3FF"/>
+    <rect x="92" y="92" width="10" height="8" fill="#E5B3FF"/>
+    <path d="M54 70 q-8 -8 0 -16 M60 54 q-8 -8 0 -16 M146 70 q8 -8 0 -16 M140 54 q8 -8 0 -16" stroke="#CFD8EC" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M40 138 h120" stroke="#2EC4B6" stroke-width="8" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 5. Gembira -->
+  <symbol id="svg-gembira" viewBox="0 0 200 160">
+    <circle cx="100" cy="80" r="44" fill="#FFD93D"/>
+    <circle cx="84" cy="72" r="5" fill="#1B2A4A"/>
+    <circle cx="116" cy="72" r="5" fill="#1B2A4A"/>
+    <path d="M82 92 Q100 110 118 92" stroke="#1B2A4A" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <circle cx="76" cy="60" r="5" fill="#FF9F1C"/>
+    <circle cx="124" cy="58" r="4" fill="#FF9F1C"/>
+    <path d="M40 44 l6 -10 M46 28 l4 -8 M160 44 l-6 -10 M154 28 l-4 -8" stroke="#FFC53D" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 6. Sedih -->
+  <symbol id="svg-sedih" viewBox="0 0 200 160">
+    <circle cx="100" cy="78" r="44" fill="#FFD93D"/>
+    <circle cx="84" cy="70" r="5" fill="#1B2A4A"/>
+    <circle cx="116" cy="70" r="5" fill="#1B2A4A"/>
+    <path d="M84 100 Q100 88 116 100" stroke="#1B2A4A" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M70 46 Q76 38 82 46 M118 46 Q124 38 130 46" stroke="#1B2A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M128 96 q6 14 4 26 q-2 8 4 12" fill="#64d2ff" stroke="#3AA6D9" stroke-width="3"/>
+  </symbol>
+
+  <!-- 7. Marah -->
+  <symbol id="svg-marah" viewBox="0 0 200 160">
+    <circle cx="100" cy="82" r="44" fill="#FF8A6B"/>
+    <path d="M76 62 L92 74 M124 62 L108 74" stroke="#1B2A4A" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="84" cy="84" r="4" fill="#1B2A4A"/>
+    <circle cx="116" cy="84" r="4" fill="#1B2A4A"/>
+    <path d="M86 108 Q100 98 114 108" stroke="#1B2A4A" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M56 34 q-8 -12 -4 -22 M64 28 q-2 -12 6 -20 M136 34 q8 -12 4 -22 M128 28 q2 -12 -6 -20" stroke="#FF453A" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 8. Takut (berselimut) -->
+  <symbol id="svg-takut" viewBox="0 0 200 160">
+    <rect x="46" y="70" width="108" height="74" rx="14" fill="#7CB8FF"/>
+    <rect x="46" y="70" width="108" height="22" rx="10" fill="#5A9BE0"/>
+    <circle cx="80" cy="104" r="10" fill="#fff"/>
+    <circle cx="120" cy="104" r="10" fill="#fff"/>
+    <circle cx="82" cy="105" r="4" fill="#1B2A4A"/>
+    <circle cx="122" cy="105" r="4" fill="#1B2A4A"/>
+    <path d="M88 126 q12 10 24 0" stroke="#1B2A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M70 62 q-2 -8 2 -12 q4 -4 2 -12 M130 62 q2 -8 -2 -12 q-4 -4 -2 -12" stroke="#5A9BE0" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M30 60 l-8 4 M34 70 l-10 0" stroke="#A8B8D4" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 9. Manis (lolipop) -->
+  <symbol id="svg-manis" viewBox="0 0 200 160">
+    <circle cx="92" cy="72" r="40" fill="#FF6B9D"/>
+    <path d="M92 32 a40 40 0 0 1 0 80 a40 40 0 0 1 0 -80 M92 32 a26 26 0 0 1 0 80 M92 32 a12 12 0 0 1 0 80" stroke="#FFE0EC" stroke-width="7" fill="none"/>
+    <path d="M92 112 l-4 34" stroke="#FFF3C4" stroke-width="10" stroke-linecap="round"/>
+    <path d="M140 52 l10 -6 M146 62 l8 0" stroke="#FFC53D" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 10. Masam (limau) -->
+  <symbol id="svg-masam" viewBox="0 0 200 160">
+    <ellipse cx="92" cy="84" rx="42" ry="34" fill="#FFD93D" stroke="#FFC53D" stroke-width="4"/>
+    <ellipse cx="92" cy="84" rx="26" ry="20" fill="#FFF3C4"/>
+    <path d="M92 64 v40 M78 76 q14 8 28 0 M76 92 q16 8 32 0" stroke="#FFC53D" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M50 60 q-8 -10 -4 -20 M56 46 q-2 -12 4 -22" stroke="#7BC950" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <circle cx="150" cy="46" r="16" fill="#FFD9B3"/>
+    <circle cx="145" cy="43" r="2.5" fill="#1B2A4A"/>
+    <circle cx="155" cy="43" r="2.5" fill="#1B2A4A"/>
+    <path d="M147 53 q8 -2 0 -8" stroke="#1B2A4A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M166 46 l6 -4 M170 54 l8 -2" stroke="#FF453A" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 11. Sejuk (kiub ais) -->
+  <symbol id="svg-sejuk" viewBox="0 0 200 160">
+    <rect x="66" y="52" width="56" height="56" rx="10" fill="#BFE3FF" stroke="#7CB8FF" stroke-width="4"/>
+    <path d="M80 52 L72 42 M94 52 L94 40 M108 52 L116 42" stroke="#BFE3FF" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="60" cy="44" r="5" fill="#7CB8FF"/>
+    <circle cx="118" cy="34" r="4" fill="#7CB8FF"/>
+    <circle cx="140" cy="52" r="5" fill="#7CB8FF"/>
+    <path d="M140 104 q4 -10 10 -8 q-4 -10 -10 -8 M140 124 q4 10 10 8 q-4 10 -10 8" stroke="#64d2ff" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M60 104 q-4 -10 -10 -8 q4 -10 10 -8 M60 124 q-4 10 -10 8 q4 10 10 8" stroke="#64d2ff" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M40 132 q12 6 24 0 q12 6 24 0" stroke="#BFE3FF" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 12. Wangi (bunga) -->
+  <symbol id="svg-wangi" viewBox="0 0 200 160">
+    <path d="M100 130 q-2 -40 0 -70" stroke="#7BC950" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="86" cy="96" rx="12" ry="6" fill="#7BC950" transform="rotate(-40 86 96)"/>
+    <ellipse cx="114" cy="96" rx="12" ry="6" fill="#7BC950" transform="rotate(40 114 96)"/>
+    <circle cx="100" cy="52" r="26" fill="#FF6B9D"/>
+    <circle cx="100" cy="52" r="10" fill="#FFD93D"/>
+    <path d="M74 52 a26 26 0 0 1 52 0 a26 26 0 0 1 -52 0 M84 42 a26 26 0 0 1 32 -8 M84 62 a26 26 0 0 0 32 8" stroke="#FF9FBC" stroke-width="5" fill="none"/>
+    <path d="M138 30 q10 0 14 10 q0 10 -14 10 M152 20 q12 2 12 14 q0 12 -12 14" stroke="#E5B3FF" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+</defs>
+</svg>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
